@@ -1,0 +1,19 @@
+.title {
+  position: relative;
+}
+
+.banner {
+  font-weight: 200;
+  width: 100px;
+  height: 70px;
+  position: absolute;
+  right: -130px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border: 1px double rgba(0, 0, 0, 0.3);
+}
+
+.banner a:first-child {
+  margin-bottom: 10px;
+}
