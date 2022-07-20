@@ -16,3 +16,8 @@ html {
 .hidden {
   display: none;
 }
+
+#linkImg {
+  width: 100px;
+  margin: -50px 0 30px 100px;
+}
