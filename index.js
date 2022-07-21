@@ -48,4 +48,4 @@ const autoclick = () => {
   buttonRight.click();
 };
 
-setInterval(autoclick, 5000);
+setInterval(autoclick, 10000);
