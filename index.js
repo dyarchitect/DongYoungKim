@@ -1,51 +1,136 @@
-/*
-  div사이즈 동적으로 구하기
-*/
-const outer = document.querySelector(".outer");
-const innerList = document.querySelector(".inner-list");
-const inners = document.querySelectorAll(".inner");
-let currentIndex = 0; // 현재 슬라이드 화면 인덱스
+const list = document.querySelector(".slide__list");
+const items = document.querySelectorAll(".slide__item");
+const buttons = document.querySelector(".buttons");
+const paginations = document.querySelector(".paginations");
+const lastIndex = items.length - 1;
+let selected = 0;
+let interval;
 
-inners.forEach((inner) => {
-  inner.style.width = `${outer.clientWidth}px`; // inner의 width를 모두 outer의 width로 만들기
-});
-
-innerList.style.width = `${outer.clientWidth * inners.length}px`; // innerList의 width를 inner의 width * inner의 개수로 만들기
-
-/*
-  버튼에 이벤트 등록하기
-*/
-const buttonLeft = document.querySelector(".button-left");
-const buttonRight = document.querySelector(".button-right");
-const button1 = document.querySelector(".btn1");
-const button2 = document.querySelector(".btn2");
-
-buttonLeft.addEventListener("click", () => {
-  currentIndex--;
-  currentIndex = currentIndex < 0 ? inners.length - 1 : currentIndex; // index값이 0보다 작아질 경우 마지막 인덱스로 변경
-  innerList.style.marginLeft = `-${outer.clientWidth * currentIndex}px`; // index만큼 margin을 주어 옆으로 밀기
-});
-
-buttonRight.addEventListener("click", () => {
-  currentIndex++;
-  currentIndex = currentIndex >= inners.length ? 0 : currentIndex; // index값이 inner의 총 개수보다 많아질 경우 0으로 변경
-  innerList.style.marginLeft = `-${outer.clientWidth * currentIndex}px`; // index만큼 margin을 주어 옆으로 밀기
-});
-
-button1.addEventListener("click", () => {
-  currentIndex--;
-  currentIndex = currentIndex < 0 ? inners.length - 1 : currentIndex; // index값이 0보다 작아질 경우 마지막 인덱스로 변경
-  innerList.style.marginLeft = `-${outer.clientWidth * currentIndex}px`; // index만큼 margin을 주어 옆으로 밀기
-});
-
-button2.addEventListener("click", () => {
-  currentIndex++;
-  currentIndex = currentIndex >= inners.length ? 0 : currentIndex; // index값이 inner의 총 개수보다 많아질 경우 0으로 변경
-  innerList.style.marginLeft = `-${outer.clientWidth * currentIndex}px`; // index만큼 margin을 주어 옆으로 밀기
-});
-
-const autoclick = () => {
-  buttonRight.click();
+// Util Functions
+const setTransition = (value) => {
+  list.style.transition = value;
 };
 
-setInterval(autoclick, 10000);
+const setTranslate = ({ index, reset }) => {
+  if (reset) list.style.transform = `translate(-${list.clientWidth}px, 0)`;
+  else
+    list.style.transform = `translate(-${(index + 1) * list.clientWidth}px, 0)`;
+};
+
+const activePagination = (index) => {
+  [...paginations.children].forEach((pagination) => {
+    pagination.classList.remove("on");
+  });
+  paginations.children[index].classList.add("on");
+};
+
+// <-- 나머지 함수는 여기부터 작성해 주세요!
+
+// Make prev and next buttons.
+const handlePrev = () => {
+  selected -= 1;
+  setTransition("transform 0.8s ease-out");
+  setTranslate({ index: selected });
+  if (selected < 0) {
+    selected = lastIndex;
+    setTimeout(() => {
+      setTransition("");
+      setTranslate({ index: selected });
+    }, 300);
+  }
+  if (selected >= 0) activePagination(selected);
+};
+
+const handleNext = () => {
+  console.log(selected);
+  selected += 1;
+  setTransition("transform 0.8s ease-out");
+  setTranslate({ index: selected });
+  if (selected > lastIndex) {
+    selected = 0;
+    setTimeout(() => {
+      setTransition("");
+      setTranslate({ index: selected });
+    }, 300);
+  }
+  if (selected <= lastIndex) activePagination(selected);
+};
+
+const makeButton = () => {
+  if (items.length > 1) {
+    const prevButton = document.createElement("button");
+    prevButton.classList.add("buttons__prev");
+    prevButton.innerHTML = '<i class="fas fa-angle-left"></i>';
+    prevButton.addEventListener("click", handlePrev);
+
+    const nextButton = document.createElement("button");
+    nextButton.classList.add("buttons__next");
+    nextButton.innerHTML = '<i class="fas fa-angle-right"></i>';
+    nextButton.addEventListener("click", handleNext);
+
+    buttons.appendChild(prevButton);
+    buttons.appendChild(nextButton);
+  }
+};
+
+// Make the pagination buttons.
+const handlePagination = (e) => {
+  if (e.target.dataset.num) {
+    selected = parseInt(e.target.dataset.num);
+    setTransition("all 0.8s ease-out");
+    setTranslate({ index: selected });
+    activePagination(selected);
+  }
+};
+
+const makePagination = () => {
+  if (items.length > 1) {
+    for (let i = 0; i < items.length; i++) {
+      const button = document.createElement("button");
+      button.dataset.num = i;
+      button.classList.add("pagination");
+      if (i === 0) {
+        button.classList.add("on");
+      }
+      paginations.appendChild(button);
+      paginations.addEventListener("click", handlePagination);
+    }
+  }
+};
+
+// Clone the first and last elements.
+const cloneElement = () => {
+  list.prepend(items[lastIndex].cloneNode(true));
+  list.append(items[0].cloneNode(true));
+  setTranslate({ reset: true });
+};
+
+// Automatically play the slide
+const autoplayIterator = () => {
+  selected += 1;
+  setTransition("all 0.8s ease-out");
+  setTranslate({ index: selected });
+  if (selected > lastIndex) {
+    activePagination(0);
+    clearInterval(interval);
+    setTimeout(() => {
+      selected = 0;
+      setTransition("");
+      setTranslate({ reset: true });
+      autoplay({ duration: 10000 });
+    }, 300);
+  }
+  if (selected <= lastIndex) activePagination(selected);
+};
+
+const autoplay = ({ duration }) => {
+  interval = setInterval(autoplayIterator, duration);
+};
+
+const render = () => {
+  makeButton();
+  makePagination();
+  cloneElement();
+  autoplay({ duration: 10000 });
+};
+render();
