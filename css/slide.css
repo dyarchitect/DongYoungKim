@@ -46,7 +46,7 @@ button {
 .buttons {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 10px;
   width: 100px;
   height: calc(100% - 1rem);
 }
@@ -64,15 +64,15 @@ button {
 }
 
 .pagination {
+  margin-top: 20px;
   width: 12px;
   height: 12px;
   background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
 }
 
 .pagination:not(:last-child) {
-  margin-right: 0.3rem;
+  margin-right: 0.5rem;
 }
 
 .pagination.on {
