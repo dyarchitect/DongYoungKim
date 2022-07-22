@@ -1,5 +1,5 @@
 .explanation {
-  margin-top: 20px;
+  margin-top: 17px;
   font-weight: 200;
   text-align: center;
   font-family: "IBM Plex Sans KR", sans-serif;
@@ -44,9 +44,9 @@ button {
 }
 
 .buttons {
+  margin-top: 17px;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
   width: 100px;
   height: calc(100% - 1rem);
 }
@@ -60,11 +60,11 @@ button {
 }
 
 .paginations {
+  margin-top: 35px;
   text-align: center;
 }
 
 .pagination {
-  margin-top: 20px;
   width: 12px;
   height: 12px;
   background: rgba(0, 0, 0, 0.04);
