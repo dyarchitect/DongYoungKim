@@ -24,12 +24,10 @@ const activePagination = (index) => {
   paginations.children[index].classList.add("on");
 };
 
-// <-- 나머지 함수는 여기부터 작성해 주세요!
-
 // Make prev and next buttons.
 const handlePrev = () => {
   selected -= 1;
-  setTransition("transform 0.8s ease-out");
+  setTransition("transform 1s linear");
   setTranslate({ index: selected });
   if (selected < 0) {
     selected = lastIndex;
@@ -44,7 +42,7 @@ const handlePrev = () => {
 const handleNext = () => {
   console.log(selected);
   selected += 1;
-  setTransition("transform 0.8s ease-out");
+  setTransition("transform 1s linear");
   setTranslate({ index: selected });
   if (selected > lastIndex) {
     selected = 0;
@@ -77,7 +75,7 @@ const makeButton = () => {
 const handlePagination = (e) => {
   if (e.target.dataset.num) {
     selected = parseInt(e.target.dataset.num);
-    setTransition("all 0.8s ease-out");
+    setTransition("all 1s linear");
     setTranslate({ index: selected });
     activePagination(selected);
   }
@@ -108,7 +106,7 @@ const cloneElement = () => {
 // Automatically play the slide
 const autoplayIterator = () => {
   selected += 1;
-  setTransition("all 0.8s ease-out");
+  setTransition("all 1s linear");
   setTranslate({ index: selected });
   if (selected > lastIndex) {
     activePagination(0);
