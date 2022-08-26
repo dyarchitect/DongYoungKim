@@ -1,4 +1,4 @@
-.profiletitle {
+.profileTitle {
   font-weight: 200;
   font-size: x-large;
   margin-bottom: 40px;
@@ -32,7 +32,7 @@
 .vitae {
   font-family: "IBM Plex Sans KR", sans-serif;
   font-weight: 200;
-  font-size: large;
+  font-size: x-large;
 }
 
 .profile__whami span:first-child {
@@ -52,5 +52,29 @@
 }
 
 .career p {
+  margin-bottom: 40px;
+}
+
+.extraTitle {
+  font-weight: 200;
+  font-size: x-large;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.extra {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 200;
+  display: flex;
+  font-size: small;
+  line-height: 25px;
+}
+
+.extra__first {
+  margin-right: 260px;
+}
+
+.extra p {
   margin-bottom: 40px;
 }
