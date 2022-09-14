@@ -115,7 +115,7 @@ const autoplayIterator = () => {
       selected = 0;
       setTransition("");
       setTranslate({ reset: true });
-      autoplay({ duration: 10000 });
+      autoplay({ duration: 30000 });
     }, 300);
   }
   if (selected <= lastIndex) activePagination(selected);
@@ -129,6 +129,7 @@ const render = () => {
   makeButton();
   makePagination();
   cloneElement();
-  autoplay({ duration: 10000 });
+  autoplay({ duration: 30000 });
 };
+
 render();
