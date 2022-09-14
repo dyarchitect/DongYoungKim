@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   font-weight: 200;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 .profile__whami p {
   font-size: small;
