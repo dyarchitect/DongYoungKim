@@ -17,11 +17,10 @@ html {
   display: none;
 }
 
-#linkImg {
+.linkImg {
   width: 100px;
   margin: -50px 0 30px 100px;
 }
-
 .fontSize {
   font-size: 15px;
 }
