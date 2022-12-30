@@ -47,7 +47,7 @@
 }
 
 .career__first {
-  margin-right: 290px;
+  margin-right: 260px;
 }
 
 .career p {
@@ -76,4 +76,8 @@
 
 .extra p {
   margin-bottom: 40px;
+}
+
+.bld {
+  font-weight: 800;
 }
