@@ -47,7 +47,7 @@ button {
 }
 
 .buttons {
-  margin-top: 17px;
+  margin-top: 5px;
   display: flex;
   justify-content: center;
   width: 100px;
@@ -62,10 +62,10 @@ button {
   border-radius: 50%;
 }
 
-.paginations {
+/* .paginations {
   margin-top: 35px;
   text-align: center;
-}
+} */
 
 .pagination {
   width: 12px;
