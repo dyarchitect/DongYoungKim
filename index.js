@@ -130,7 +130,7 @@ const render = () => {
   makeButton();
   makePagination();
   cloneElement();
-  autoplay({duration: 30000});
+  // autoplay({duration: 30000});
 };
 
 render();
