@@ -1,7 +1,7 @@
 const list = document.querySelector('.slide__list');
 const items = document.querySelectorAll('.slide__item');
 const buttons = document.querySelector('.buttons');
-const paginations = document.querySelector('.paginations');
+// const paginations = document.querySelector('.paginations');
 const lastIndex = items.length - 1;
 let selected = 0;
 let interval;
@@ -37,7 +37,7 @@ const handlePrev = () => {
       setTranslate({index: selected});
     }, 300);
   }
-  if (selected >= 0) activePagination(selected);
+  // if (selected >= 0) activePagination(selected);
 };
 
 const handleNext = () => {
@@ -52,7 +52,7 @@ const handleNext = () => {
       setTranslate({index: selected});
     }, 300);
   }
-  if (selected <= lastIndex) activePagination(selected);
+  // if (selected <= lastIndex) activePagination(selected);
 };
 
 const makeButton = () => {
@@ -119,7 +119,7 @@ const autoplayIterator = () => {
       autoplay({duration: 30000});
     }, 300);
   }
-  if (selected <= lastIndex) activePagination(selected);
+  // if (selected <= lastIndex) activePagination(selected);
 };
 
 const autoplay = ({duration}) => {
@@ -128,7 +128,7 @@ const autoplay = ({duration}) => {
 
 const render = () => {
   makeButton();
-  makePagination();
+  // makePagination();
   cloneElement();
   // autoplay({duration: 30000});
 };
