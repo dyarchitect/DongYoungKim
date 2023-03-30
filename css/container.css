@@ -13,6 +13,8 @@
   position: relative;
 }
 
+
+
 .dot__span {
   display: none;
   position: absolute;
@@ -21,9 +23,18 @@
   font-weight: 200;
 }
 
-.dot a:hover {
-  opacity: 0.7;
-  transition: all ease-in-out 0.2s;
+.dot img {
+  position:relative;
+}
+
+.dot img.imgHover{
+  display:none;
+}
+.dot:hover img.imgOrg{
+  display:none;
+}
+.dot:hover img.imgHover{
+  display:block
 }
 
 .dot:hover .dot__span {
